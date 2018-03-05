@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 900px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>Emergency Vehicle</h3>
+    <div id="map"></div>
+    <script>
+        
+      function initMap() {
+        var Position = {lat: 33.626057, lng: 73.071442};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: Position
+        });
+        var marker = new google.maps.Marker({
+          position: Position,
+            icon:'./ambulance (2).png',
+          map: map
+        });
+          var marker = new google.maps.Marker({
+          position: {
+              lat:33.594,
+              lng:73.056
+
+          },
+            icon:'./ambulance (3).png',
+          map: map
+        });
+           var marker = new google.maps.Marker({
+          position: {
+              lat:33.6784,
+              lng:73.1408
+
+
+          },
+            icon:'./ambulance (2).png',
+        
+          map: map
+        });
+           var marker = new google.maps.Marker({
+          position: {
+              lat:33.4906,
+              lng:73.1003
+
+          },
+            icon:'./ambulance (3).png',
+          map: map
+        });
+           var marker = new google.maps.Marker({
+          position: {
+              lat:33.7138,
+              lng:33.7138
+
+          },
+            icon:'./ambulance (2).png',
+          map: map
+        });
+          var marker = new google.maps.Marker({
+          position: {
+              lat:33.6352,
+              lng:73.0705
+          },
+            icon:'./ambulance (2).png',
+          map: map
+        });
+          var marker = new google.maps.Marker({
+          position: {
+              lat:33.5825,
+              lng:73.0922
+          },
+            icon:'./ambulance (2).png',
+          map: map
+        });
+           var marker = new google.maps.Marker({
+          position: {
+              lat:33.6115,
+              lng:73.0651
+          },
+            icon:'./ambulance (2).png',
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9JZR5rP57R7MffHbGazEO0UGjjzsZ1Fc&callback=initMap">
+    </script>
+  </body>
+</html>
