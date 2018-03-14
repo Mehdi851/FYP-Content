@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 800px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+   <!-- <div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+      <option value="oklahoma city, ok">Oklahoma City</option>
+      <option value="amarillo, tx">Amarillo</option>
+      <option value="gallup, nm">Gallup, NM</option>
+      <option value="flagstaff, az">Flagstaff, AZ</option>
+      <option value="winona, az">Winona</option>
+      <option value="kingman, az">Kingman</option>
+      <option value="barstow, ca">Barstow</option>
+      <option value="san bernardino, ca">San Bernardino</option>
+      <option value="los angeles, ca">Los Angeles</option>
+    </select>
+    <b>End: </b>
+    <select id="end">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+      <option value="oklahoma city, ok">Oklahoma City</option>
+      <option value="amarillo, tx">Amarillo</option>
+      <option value="gallup, nm">Gallup, NM</option>
+      <option value="flagstaff, az">Flagstaff, AZ</option>
+      <option value="winona, az">Winona</option>
+      <option value="kingman, az">Kingman</option>
+      <option value="barstow, ca">Barstow</option>
+      <option value="san bernardino, ca">San Bernardino</option>
+      <option value="los angeles, ca">Los Angeles</option>
+    </select>
+    </div>-->
+      <h3>Emergency Vehicle</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+           center: {lat: 33.594, lng: 73.056}
+        });
+          marker = new google.maps.Marker({
+    map: map,
+       position: {
+              lat:33.594,
+              lng:73.056
+
+          },
+   icon:'./ambulance (2).png',
+    animation: google.maps.Animation.DROP,
+  });
+        directionsDisplay.setMap(map);
+map.addListener('click', function(e) {
+    
+//addresses = geocoder.getFromLocation(latitude, longitude, 1);
+calculateAndDisplayRoute(directionsService, directionsDisplay);
+    animatedMove(marker, 10, marker.position, e.latLng);
+   
+  });
+       /* var onChangeHandler = function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };*/
+        /*document.getElementById('start').addEventListener('change', onChangeHandler);
+        document.getElementById('end').addEventListener('change', onChangeHandler);*/
+      }
+
+      function calculateAndDisplayRoute( directionsService, directionsDisplay) {
+        directionsService.route({
+          //origin: document.getElementById('start').value,
+          //destination: document.getElementById('end').value,
+          origin:"Saddar, Rawalpindi 46000, Pakistan",
+            
+            destination:"Chak Shahzad islamabad",
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+        function animatedMove( marker, n, current, moveto) {
+  var lat = current.lat();
+  var lng = current.lng();
+
+  var deltalat = (33.661694 - current.lat()) / 1500;
+  var deltalng = (73.143812 - current.lng()) / 1500;
+
+  for (var i = 0; i < 1500; i++) {
+    
+       
+      (function(ind) 
+     {
+      setTimeout(
+        function() {
+            
+          var lat = marker.position.lat();
+          var lng = marker.position.lng();
+
+          lat += deltalat;
+          lng += deltalng;
+          latlng = new google.maps.LatLng(lat, lng);
+          marker.setPosition(latlng);
+            
+        }, n * ind
+      );
+    })(i)
+  }
+}
+    </script>
+    <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9JZR5rP57R7MffHbGazEO0UGjjzsZ1Fc&callback=initMap">
+    </script>
+  </body>
+</html>
