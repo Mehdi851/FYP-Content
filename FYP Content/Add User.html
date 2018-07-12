@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./Style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  	
+  </script>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD-C28C89eVF9DHRET1ylDCLU3OyyZyCf0",
+    authDomain: "driverapp-11c74.firebaseapp.com",
+    databaseURL: "https://driverapp-11c74.firebaseio.com",
+    projectId: "driverapp-11c74",
+    storageBucket: "driverapp-11c74.appspot.com",
+    messagingSenderId: "859911182982"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+
+    var flag=false;
+
+
+  function Validate(form)
+  {
+    
+    
+   
+    if(form.username.value=="")
+    {
+      document.getElementById("username_error").innerHTML="Please Enter your uaername";
+
+      return false;
+     
+    }
+    
+    
+    if(form.password.value=="")
+    {
+      document.getElementById("password_error").innerHTML="Please Enter your password";
+      return false;
+      
+    }
+    
+    if(form.email.value=="")
+    {
+      document.getElementById("email_error").innerHTML="Please Enter your Email";
+      return false;
+      
+    }
+    if(form.cnic.value=="")
+    {
+      document.getElementById("cnic_error").innerHTML="Please Enter your CNIC No";
+
+      return false;
+    }
+   
+    if(form.Post.value=="")
+    {
+      document.getElementById("Post_error").innerHTML="Please Enter your Post ";
+      
+
+      return false;
+    }
+
+    // var user_name=document.getElementById("username").value;
+    // //alert(username);
+    // var password=document.getElementById("password").value;
+    // var email=document.getElementById("email").value;
+    // var CNIC =document.getElementById("cnic").value;
+    // var post=document.getElementById("Post").value;
+   
+
+
+
+
+ //    alert("data is successfully saved!!")
+ // flag=true;
+ return true;
+
+     
+   }
+  
+  </script>
+  
+
+  
+ 
+	<title>DashBoard</title>
+</head>
+<body style="margin: 0px;padding: 0px; background-color: #E8E8E8;">
+	<div id="wrapper" >
+		<!-- Header -->
+		<div id="Header"  >
+			<div class="page-header" style="height: 120px; background: #F43412;" >
+				<a href="#" id="menutoggle"><span style="font-size:30px; margin-left: 25px;float: left; margin-top: 40px; color:white; "  id="main_icon" class="glyphicon glyphicon-align-justify"></span></a>
+				<h1 style="color:#FEFEFE; padding-top:15px; padding-left: 30px; float: left; ">Emergency Officer</h1>
+
+         
+ 			 </div>
+		</div>
+		<!-- SideBar -->
+			<div id="sidebar" style="background-color: white; border:  5px;" >
+			
+					<ul class="nav navbar-nav">
+					<li id="sideLi" class="active"><a href="./DashBoard.html">DashBoard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+					<li ><a href="#">Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Employee <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+							<ul class="dropdown-menu forAnimate" role="menu">
+								<li><a href="./Add User.html">Add Employee</a></li>
+								<li><a href="./View User.html">View Employee</a></li>
+								<li><a href="#">Update Employee</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Delete Employee</a></li>
+								
+							</ul>
+					</li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hospitals <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#">Add Hospitals</a></li>
+						<li><a href="#">View Hospitals</a></li>
+						<li><a href="#">Update Hospitals</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Delete Hospitals</a></li>
+					</ul>
+				</li>
+			</ul>
+			</div>	
+		<!-- MainContent -->
+
+			<div id="MainContent" style="">
+				<div class="content-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							
+						<article>
+            <div class="col-md-4 col-md-offset-3" Style="margin-top:10px;" >
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-user"></span> Add User</div>
+            
+     <img style="width:150px; height:170px; margin-left: 80px;" src="./1467111646_Edit-Male-User.png" />
+
+          <div class="panel-body ,col-xs-4" Style="padding-left:10px;">
+             <form class="form-group" method="post" onsubmit="return Validate(this)" >
+             
+
+            <div class="form-group,col-xs-4 col-md-offset-2 col-sm-offset-3 " >
+              <label for="email">Username:</label>
+             <input class="form-control" type="text" id="username" name="username" style="width:300px"placeholder="e.g Badar" /><span  id="username_error" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group ,col-xs-4 col-md-offset-2 col-sm-offset-3" >
+              <label for="pwd">Password:</label>
+              <td><input class="form-control"type="Password" id="password" name="password"style="width:300px" placeholder="******" /></td>
+             
+              
+            <span  id="password_error"class="text-danger" ></span>
+            </div>
+            <div class="form-group ,col-xs-4 col-md-offset-2 col-sm-offset-3" >
+              <label for="pwd">Email:</label>
+              <td><input class="form-control"type="email" id="email"name="email"style="width:300px" placeholder="example@email.com" /></td>
+            <span  id="email_error"class="text-danger" ></span>
+            </div>
+            
+            <div class="form-group ,col-xs-4 col-md-offset-2 col-sm-offset-3" >
+              <label for="pwd">CNIC:</label>
+              <td><input class="form-control"type="CNIC" id="cnic"name="cnic" style="width:300px"placeholder="CNIC" /></td>
+            <span  id="cnic_error"class="text-danger" ></span>
+            </div>
+            
+            <div class="form-group ,col-xs-4 col-md-offset-2 col-sm-offset-3" >
+              <label for="pwd">Post:</label>
+              <select class="form-control" id="Post" name="Post" list="ctlist"style="width:300px" placeholder="e.g Driver">
+              	 <option value="none">none</option> 
+              	 <option value="Driver">Driver</option>
+              </select>
+<!--
+                <datalist id="ctlist">
+                <option value ="Driver"/>
+               
+                </datalist>
+-->
+                
+            <span  id="Post_error"class="text-danger" ></span>
+            </div>
+            <button class="btn btn-success ,col-xs-4 btn-block" type="Submit" name="submit" value="Save" id="Savebtn"> Save</button>
+            
+            </form>
+          </div>
+          </div>
+          
+    
+    
+    
+    
+    <!--old -->
+        
+    
+    </article>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+	</div>
+<script type="text/javascript">
+  
+
+$("#Savebtn").click(function(e){
+
+e.preventDefault();
+var user_name=$("#username").val();
+var password=$("#password").val();
+var email=$("#email").val();
+var CNIC=$("#cnic").val();
+var Post=$("#Post").val();
+// var user_name=document.getElementById("username").value;
+//     //alert(username);
+//     var password=document.getElementById("password").value;
+//     var email=document.getElementById("email").value;
+//     var CNIC =document.getElementById("cnic").value;
+//     var post=document.getElementById("Post").value;
+// alert("fdfdsfsdfd");
+
+var rootRef =firebase.database().ref().child("User");
+ 
+     var userRef=rootRef.child(user_name);
+     userRef.child("username").set(user_name);
+    userRef.child("password").set(password);
+  
+    userRef.child("email").set(email);
+    
+    userRef.child("CNIC").set(CNIC);
+    userRef.child("Post").set(Post);
+    
+    alert("Data saved successfully!!");
+    
+setTimeout(function(){
+	window.location = './DashBoard.html';
+},3000);
+});
+ 
+
+</script>
+
+  	<!-- menu toggle script -->
+  		<script type="text/javascript">
+  			$("#menutoggle").click(function(e){
+
+  				e.preventDefault();
+  				$("#wrapper").toggleClass("menuDisplayed");	
+
+  			});
+  		</script>
+</body>
+</html>

@@ -16,54 +16,11 @@
         margin: 0;
         padding: 0;
       }
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
+      
     </style>
   </head>
   <body>
-   <!-- <div id="floating-panel">
-    <b>Start: </b>
-    <select id="start">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    <b>End: </b>
-    <select id="end">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    </div>-->
+   
       <h3>Emergency Vehicle</h3>
     <div id="map"></div>
     <script>
@@ -87,6 +44,7 @@
         directionsDisplay.setMap(map);
 map.addListener('click', function(e) {
     
+	alert(e.latLng.lat());
 //addresses = geocoder.getFromLocation(latitude, longitude, 1);
 calculateAndDisplayRoute(directionsService, directionsDisplay);
     animatedMove(marker, 10, marker.position, e.latLng);
@@ -118,6 +76,7 @@ calculateAndDisplayRoute(directionsService, directionsDisplay);
         function animatedMove( marker, n, current, moveto) {
   var lat = current.lat();
   var lng = current.lng();
+  // moveto is location of hospital where driver has to reached
 
   var deltalat = (33.661694 - current.lat()) / 1500;
   var deltalng = (73.143812 - current.lng()) / 1500;
@@ -144,8 +103,8 @@ calculateAndDisplayRoute(directionsService, directionsDisplay);
   }
 }
     </script>
-    <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9JZR5rP57R7MffHbGazEO0UGjjzsZ1Fc&callback=initMap">
+     <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABoCW7wo9Cd8uJ3jsJHpMmBXEzN7E-lyk&callback=initMap">
     </script>
   </body>
 </html>

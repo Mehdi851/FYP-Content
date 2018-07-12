@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./Style.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--Toast libraries-->
+<!--
+<script type="text/javascript" src="dist/jquery.toast.min.js"></script>
+	
+-->
+<link type="text/css" rel="stylesheet" href="./dist/jquery.toast.min.css"/>
+<link type="text/css" rel="stylesheet" href="./dist/toastr.css"/>
+<script type="text/javascript" src="dist/jquery.toast.min.js"></script>
+
+ 
+
+<!--	Bootstrap Libraries-->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Latest compiled JavaScript -->
+
+  <script type="text/javascript">
+  	
+  </script>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD-C28C89eVF9DHRET1ylDCLU3OyyZyCf0",
+    authDomain: "driverapp-11c74.firebaseapp.com",
+    databaseURL: "https://driverapp-11c74.firebaseio.com",
+    projectId: "driverapp-11c74",
+    storageBucket: "driverapp-11c74.appspot.com",
+    messagingSenderId: "859911182982"
+  };
+  firebase.initializeApp(config);
+</script>
+<script >
+ // var mylatitude;
+  //var mylngitude;
+  var Position;
+  var map;
+  var number=0;
+  var MarkerList=[];
+  var NameList=[];
+  var centerPoint;
+  var  CustomIcon='./ambulance (2).png';
+ 
+   // 
+
+function getLatLngFromString( lat, lng) {
+    //var latlng = ll.split(/, ?/)
+    return new google.maps.LatLng(parseDouble(lat), parseDouble(lng)); 
+}  
+//
+ var rootRef= firebase.database().ref().child("Driver");
+        rootRef.on("child_added",snap=>{
+          var newPosition = snap.val()
+            var U_Name=snap.child("Name").val();
+            NameList[number]=U_Name;
+      
+//			 var z = document.createElement("option");
+//    z.setAttribute("value", U_Name);
+//    var t = document.createTextNode(U_Name);
+//    z.appendChild(t);
+//    document.getElementById("Drivers").appendChild(z);
+// alert(NameList[number]);
+MarkerList[number] = new google.maps.Marker({
+              position: {
+              lat:33.6352,
+              lng:73.0705
+          },
+              title:NameList[number],
+              icon:'./ambulance (2).png', 
+              map: map
+            });
+
+
+      number=number+1;
+
+      // addMarker(MarkerList,number,NameList);
+
+        }); //end of snap function
+// }
+//alert(MarkerList);
+	
+ function addMarker(MarkerList, number,NameList) {
+//   var rootRef= firebase.database().ref().child(Umarker);
+//             mylatitude=snap.child("lat").val();
+//              mylngitude=snap.child("lng").val();
+// Umarker = new google.maps.Marke;
+//var length=MarkerList.length;
+// var Uname=NameList[number];
+// // alert(NameList[number]);
+// MarkerList[number] = new google.maps.Marker({
+//               position: {
+//               lat:33.6352,
+//               lng:73.0705
+//           },
+//               title:Name,
+//               icon:'./ambulance (2).png', 
+//               map: map
+//             });
+
+        
+    }//end of marker function
+
+  
+//}//end of myTimer function
+//    
+</script>
+<script >
+  var myVar = setInterval(myTimer, 100);
+    function myTimer() {
+      
+        
+      // var chname=NameList[i];
+      for (var i = 0; i < NameList.length; i++) {
+       
+       
+       var rootRef= firebase.database().ref().child("Driver");
+       var userRef=rootRef.child(NameList[i]);
+        userRef.on("value",snaap=>{
+          var newPosition = snaap.val()
+          var status=snaap.child("status").val();
+            var lat=snaap.child("lat").val();
+            var lng=snaap.child("lng").val();
+            if (status=="On") {
+              CustomIcon='./ambulance (3).png';
+            }
+            else{
+              CustomIcon='./ambulance (2).png';
+            }
+            MarkerList[i].setIcon(CustomIcon);
+            changeMarkerPosition(MarkerList[i],lat,lng);  
+			
+//            MarkerList[i].addListener("click",function(){
+//				//alert(NameList[i]);
+//				
+//				
+//				
+//			});
+			
+//             mylatitude=snap.child("lat").val();
+//              mylngitude=snap.child("lng").val();
+});
+       } 
+
+    }
+     function changeMarkerPosition(marker,lat,lng) {
+    var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+    marker.setPosition(latlng);
+}
+
+</script>
+   <script>
+
+      function initMap() 
+      {
+         var styledMapType = new google.maps.StyledMapType(
+		 
+		 
+		 );
+		  
+		  
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+         map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+			  //mapTypeId: 'hybrid',
+           center: {lat: 33.594, lng: 73.056}
+        });
+     // Position={lat: mylatitude, lng:mylngitude};
+            
+
+  //         marker = new google.maps.Marker({
+       
+  //   map : map,
+  //      position:{lat: 33.594, lng: 73.056},
+  //  
+  //   animation: google.maps.Animation.DROP,
+  // });
+		  
+          map.addListener('click', function(e) {
+    
+	
+    $("#LocationModal").modal();
+			  
+		  $("#SaveLocation").click(function(){
+//			alert(e.latLng.lat());
+			  var Driver=$("#Drivers").val();
+			  var P_Phone=$("#P_Phone").val();
+			  var discp=$("#Disc_text").val();
+			  var lat=e.latLng.lat();
+			  var lng=e.latLng.lng();
+			  
+			  
+			  var rootRef =firebase.database().ref().child("tasks");
+ 
+     var userRef=rootRef.child(Driver);
+     userRef.child("Driver").set(Driver);
+    userRef.child("P_Phone").set(P_Phone);
+  
+    userRef.child("lat").set(lat);
+    
+    userRef.child("lng").set(lng);
+    
+			  $("#LocationModal").modal("hide");
+		  });
+      });
+   
+      }
+
+     
+        
+
+    </script>
+    <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABoCW7wo9Cd8uJ3jsJHpMmBXEzN7E-lyk&callback=initMap">
+    </script>
+	<title>DashBoard</title>
+</head>
+<body style="margin: 0px;padding: 0px; background-color: #E8E8E8;">
+	<div id="wrapper" >
+		<!-- Header -->
+		<div id="Header"  >
+			<div class="page-header" style="height: 120px; background: #F43412;" >
+				<a href="#" id="menutoggle"><span style="font-size:30px; margin-left: 25px;float: left; margin-top: 40px; color:white; "  id="main_icon" class="glyphicon glyphicon-align-justify"></span></a>
+				<h1 style="color:#FEFEFE; padding-top:15px; padding-left: 30px; float: left; ">Emergency Officer</h1>
+
+         
+ 			 </div>
+		</div>
+		<!-- SideBar -->
+			<div id="sidebar" style="background-color: white;" >
+			
+					<ul class="nav navbar-nav">
+					<li id="sideLi" class="active"><a href="./DashBoard.html">DashBoard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+					<li ><a href="#">Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Employee <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+							<ul class="dropdown-menu forAnimate" role="menu">
+								<li><a href="./Add User.html" >Add Employee</a></li>
+								<li><a href="./View User.html">View Employee</a></li>
+								<li><a href="#">Update Employee</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Delete Employee</a></li>
+								
+							</ul>
+					</li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hospitals <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#">Add Hospitals</a></li>
+						<li><a href="#">View Hospitals</a></li>
+						<li><a href="#">Update Hospitals</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Delete Hospitals</a></li>
+					</ul>
+				</li>
+			</ul>
+			</div>	
+		<!-- MainContent -->
+
+			<div id="MainContent" style="">
+				<div class="content-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							
+							<div id="map" style="height: 750px;"></div>
+						</div>
+						<!--Location Adding Modle-->
+					                
+<!--
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" id="orangeForm-name" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+                </div>
+                <div class="md-form mb-5">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" id="orangeForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-defult">Sign up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="" class="btn btn-rounded btn-success" data-toggle="modal" data-target="#modalRegisterForm">Launch Modal Register Form</a>
+</div>
+      
+-->
+<!--				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="LocationModal" data-whatever="@mdo">Open modal for @mdo</button>-->
+					<div class="modal fade bd-example-modal-lg " id="LocationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Driver:</label>
+			  <select type="text" class="form-control" id="Drivers"></select>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Patient Phone:</label>
+            <input type="text" class="form-control" id="P_Phone">
+          </div>
+<!--
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Patient Phone:</label>
+            <input type="text" class="form-control" id="P_Phone"/>
+          </div>
+-->
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Discription:</label>
+            <textarea class="form-control" id="Disc_text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="SaveLocation" class="btn btn-primary">Assign Task</button>
+      </div>
+    </div>
+  </div>
+</div>
+						
+						
+					</div>
+				</div>
+				
+			</div>
+	</div>
+  	<!-- menu toggle script -->
+  		<script type="text/javascript">
+  			$("#menutoggle").click(function(e){
+
+  				e.preventDefault();
+  				$("#wrapper").toggleClass("menuDisplayed");	
+
+  			});
+			
+			
+  		</script>
+  		<script>
+//	Toast content
+			
+			$(document).ready(function(e){
+				//toastr["success"]("Clear itself?<br /><br /><button type="button" class="btn clear">Yes</button>")
+				
+				$.toast({
+					
+					text:'this is a simple toast <br /><br /><button type="button" id="yes" class="btn btn-success">Yes</button>',
+					heading:'heading',
+					icon:'info',
+					hideAfter:false
+//					showHideTransition:'slide
+//					onclick: function(e){
+//					 alert("clicked");
+//				 }
+				
+				});
+				$("#yes").click(function(e){
+					//alert("button is clicked");
+					 $("#LocationModal").modal();
+//					$.toast.options{
+//						
+//					}
+				});
+            
+			});
+				
+				
+				
+	</script>
+</body>
+</html>

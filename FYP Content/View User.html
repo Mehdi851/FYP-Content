@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./Style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  	
+  </script>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD-C28C89eVF9DHRET1ylDCLU3OyyZyCf0",
+    authDomain: "driverapp-11c74.firebaseapp.com",
+    databaseURL: "https://driverapp-11c74.firebaseio.com",
+    projectId: "driverapp-11c74",
+    storageBucket: "driverapp-11c74.appspot.com",
+    messagingSenderId: "859911182982"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+
+
+   var rootRef= firebase.database().ref().child("User");
+        rootRef.on("child_added",snap=>{
+          var username=snap.child("username").val();
+                    
+
+
+        }); //end of snap function
+  
+  
+  </script>
+  
+
+  
+ 
+	<title>DashBoard</title>
+</head>
+<body style="margin: 0px;padding: 0px; background-color: #E8E8E8;">
+	<div id="wrapper" >
+		<!-- Header -->
+		<div id="Header"  >
+			<div class="page-header" style="height: 120px; background: #F43412;" >
+				<a href="#" id="menutoggle"><span style="font-size:30px; margin-left: 25px;float: left; margin-top: 40px; color:white; "  id="main_icon" class="glyphicon glyphicon-align-justify"></span></a>
+				<h1 style="color:#FEFEFE; padding-top:15px; padding-left: 30px; float: left; ">Emergency Officer</h1>
+
+         
+ 			 </div>
+		</div>
+		<!-- SideBar -->
+			<div id="sidebar" style="background-color: white; border:  5px;" >
+			
+					<ul class="nav navbar-nav">
+					<li id="sideLi" class="active"><a href="./DashBoard.html">DashBoard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+					<li ><a href="#">Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Employee <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+							<ul class="dropdown-menu forAnimate" role="menu">
+								<li><a href="./Add User.html">Add Employee</a></li>
+								<li><a href="./View%20User.html">View Employee</a></li>
+								<li><a href="#">Update Employee</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Delete Employee</a></li>
+								
+							</ul>
+					</li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Hospitals <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#">Add Hospitals</a></li>
+						<li><a href="#">View Hospitals</a></li>
+						<li><a href="#">Update Hospitals</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Delete Hospitals</a></li>
+					</ul>
+				</li>
+			</ul>
+			</div>	
+		<!-- MainContent -->
+
+			<div id="MainContent" style="">
+				<div class="content-fluid">
+					<div class="row">
+						<div class="col-lg-12">
+							<table class="table">
+                <thead>
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+               
+              </table>
+						
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+	</div>
+
+
+  	<!-- menu toggle script -->
+  		<script type="text/javascript">
+  			$("#menutoggle").click(function(e){
+
+  				e.preventDefault();
+  				$("#wrapper").toggleClass("menuDisplayed");	
+
+  			});
+  		</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:background="@color/Login_Background"
+    tools:context="com.jawad.driverapp.Login">
+    <include
+        android:id="@+id/map_Toolbar"
+        layout="@layout/main_activity_toolbar0"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textview"
+        android:layout_toRightOf="@+id/textview"
+        tools:ignore="IncludeLayoutParam"></include>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignEnd="@+id/usernameET"
+        android:layout_alignRight="@+id/usernameET"
+        android:layout_below="@+id/map_Toolbar"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="32dp"
+        app:srcCompat="@drawable/login_logo" />
+
+    <EditText
+        android:id="@+id/usernameET"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/loginbtn"
+        android:layout_alignStart="@+id/loginbtn"
+
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:drawableLeft="@drawable/ic_action_password"
+
+        android:ellipsize="start"
+        android:hint="Username"
+        android:shadowColor="@color/colorAccent"
+        android:textSize="16dp" />
+
+
+    <EditText
+        android:id="@+id/PasswordET"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+
+        android:layout_alignLeft="@+id/usernameET"
+        android:layout_alignStart="@+id/usernameET"
+        android:layout_below="@+id/usernameET"
+        android:layout_marginTop="38dp"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="16dp" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/loginbtn"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/PasswordET"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="#00FF00"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginLeft="32dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/loginbtn"
+            android:layout_alignStart="@+id/loginbtn"
+            android:layout_below="@+id/loginbtn">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="Login"
+                android:textColor="#fff"
+                android:textSize="14dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "859911182982",
+    "firebase_url": "https://driverapp-11c74.firebaseio.com",
+    "project_id": "driverapp-11c74",
+    "storage_bucket": "driverapp-11c74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859911182982:android:45bc6a03075ff2e3",
+        "android_client_info": {
+          "package_name": "com.jawad.driverapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859911182982-4d2ms7lesmd9ff6beognlplbrhbr7hbc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jawad.driverapp",
+            "certificate_hash": "9b32df9b82ed5d45ccdb6ba9bd4cb6224bb04e16"
+          }
+        },
+        {
+          "client_id": "859911182982-fuc78cdglgikiulscb739nu8fdau942o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGtsswHQzfZt98DFqeUVYYaGu39HHcnw4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859911182982-fuc78cdglgikiulscb739nu8fdau942o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <style>
+      
+      #map {
+        height: 800px;
+      }
+      
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+    </style>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD-C28C89eVF9DHRET1ylDCLU3OyyZyCf0",
+    authDomain: "driverapp-11c74.firebaseapp.com",
+    databaseURL: "https://driverapp-11c74.firebaseio.com",
+    projectId: "driverapp-11c74",
+    storageBucket: "driverapp-11c74.appspot.com",
+    messagingSenderId: "859911182982"
+  };
+  firebase.initializeApp(config);
+</script>
+<script >
+  var mylatitude;
+  var mylngitude;
+  var Position;
+  var map;
+  var number=0;
+  var centerPoint;
+    var myVar = setInterval(myTimer, 1000);
+
+function getLatLngFromString( lat, lng) {
+    //var latlng = ll.split(/, ?/)
+    return new google.maps.LatLng(parseDouble(lat), parseDouble(lng)); 
+}
+function myTimer() {
+    
+//
+ var rootRef= firebase.database().ref().child("Driver");
+        rootRef.on("child_added",snap=>{
+          var newPosition = snap.val()
+            var U_Name=snap.child("Name").val();
+            mylatitude=snap.child("lat").val();
+             mylngitude=snap.child("lng").val();
+              // alert(U_Name);
+              // number=number+1;
+             // alert(number);
+
+            centerPoint = new google.maps.LatLng(parseFloat(mylatitude), parseFloat(mylngitude));
+          
+//               alert(centerPoint);
+      
+      showMarker(U_Name, centerPoint,mylngitude,mylatitude
+      // hideMarker(U_Name, centerPoint,mylngitude,mylatitude);
+       }); 
+}
+ function showMarker(Umarker, location,lat,lng) {
+
+//Umarker = new google.maps.Marker; 
+Umarker = new google.maps.Marker({
+            position: centerPoint ,
+      icon:'./ambulance (2).png',
+            map: map
+             });  
+          if(typeof Umarker==='undefined')
+          {
+          //   Umarker.setPosition(centerPoint);
+      
+
+       
+        }   
+          else{
+          // changeMarkerPosition(Umarker,lat,lng);
+          }
+
+
+        
+//         function myTimer() {
+//   Umarker.setPosition(location);
+// }
+    }//end of marker function
+//}//end of myTimer function
+//     function changeMarkerPosition(marker,lat,lng) {
+//     var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+//     marker.setPosition(latlng);
+// }
+</script>
+  </head>
+  <body>
+
+      <h3>Emergency Vehicle</h3>
+    <div id="map"></div>
+    <script>
+
+      function initMap() 
+      {
+        
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+         map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+           center: {lat: 33.594, lng: 73.056}
+        });
+      Position={lat: mylatitude, lng:mylngitude};
+            
+
+  //         marker = new google.maps.Marker({
+       
+  //   map : map,
+  //      position:{lat: 33.594, lng: 73.056},
+  //  
+  //   animation: google.maps.Animation.DROP,
+  // });
+          
+      
+      }
+
+     
+        
+
+    </script>
+    <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABoCW7wo9Cd8uJ3jsJHpMmBXEzN7E-lyk&callback=initMap">
+    </script>
+  </body>
+</html>

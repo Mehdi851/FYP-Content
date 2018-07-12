@@ -1,0 +1,194 @@
+/*#main_icon
+{
+    float:left;
+
+   padding-left: 25px;
+   padding-top:0px;
+}*/
+/*SideBar Manu*/
+#sidebar{
+  z-index: 1;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  overflow-y: hidden;
+  margin: 0px;
+ 
+  
+
+}
+/*MainContent*/
+#MainContent{
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+  border: 10px;
+  
+
+}
+
+#wrapper.menuDisplayed #sidebar{
+  width: 250px; 
+}
+#wrapper.menuDisplayed #MainContent{
+  padding-left: 250px; 
+}
+
+
+
+
+.sidebar-nav{
+  padding: 0;
+  list-style: none;
+
+}
+#sidebar li{
+  text-indent: 20px;
+  line-height: 40px;
+}
+#sidebar li a{
+  display: block;
+  text-decoration:none;
+  color: red;
+}
+#SideBar li :hover{
+  background: #F43412;
+}
+#sideLi:hover{
+ background: #F43412;
+}
+
+
+
+
+
+  /* remove outer padding */
+
+
+  /*Remove rounded coners*/
+
+  .sidebar.navbar {
+    border-radius: 0px;
+  }
+
+  .sidebar, .main{
+    -webkit-transition: margin 200ms ease-out;
+      -moz-transition: margin 200ms ease-out;
+      -o-transition: margin 200ms ease-out;
+      transition: margin 200ms ease-out;
+  }
+
+  /* Add gap to nav and right windows.*/
+  .main{
+    padding: 10px 10px 0 10px;
+  }
+
+  /* .....NavBar: Icon only with coloring/layout.....*/
+
+  /*small/medium side display*/
+  @media (min-width: 768px) {
+
+    /*Allow main to be next to Nav*/
+    .main{
+      position: absolute;
+      width: calc(100% - 40px); /*keeps 100% minus nav size*/
+      margin-left: 40px;
+      float: right;
+    }
+
+    /*lets nav bar to be showed on mouseover*/
+    nav.sidebar:hover + .main{
+      margin-left: 200px;
+    }
+
+    /*Center Brand*/
+    nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+      margin-left: 0px;
+    }
+    /*Center Brand*/
+    nav.sidebar .navbar-brand, nav.sidebar .navbar-header{
+      text-align: center;
+      width: 100%;
+      margin-left: 0px;
+    }
+
+    /*Center Icons*/
+    nav.sidebar a{
+      padding-right: 13px;
+    }
+
+    /*adds border top to first nav box */
+    .navbar-nav > li:first-child{
+      border-top: 1px #e5e5e5 solid;
+    }
+
+    /*adds border to bottom nav boxes*/
+  .navbar-nav > li{
+      border-bottom: 1px #e5e5e5 solid;
+    }
+
+    /* Colors/style dropdown box*/
+  .navbar-nav .open .dropdown-menu {
+      position: static;
+      float: none;
+      width: auto;
+      margin-top: 0;
+      background-color: transparent;
+      border: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    /*allows nav box to use 100% width*/
+   .navbar-collapse{
+      padding: 0 0px 0 0px;
+    }
+
+    /*colors dropdown box text */
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+      color: #777;
+    }
+
+    /*gives sidebar width/height*/
+    
+
+    /*give sidebar 100% width;*/
+    .navbar-nav li {
+      width: 100%;
+    }
+
+    /* Move nav to full on mouse over*/
+    .navbar-nav:hover{
+      margin-left: 0px;
+    }
+    /*for hiden things when navbar hidden*/
+    
+  }
+
+  /* .....NavBar: Fully showing nav bar..... */
+
+  @media (min-width: 1330px) {
+
+    /*Allow main to be next to Nav*/
+    .main{
+      width: calc(100% - 200px); /*keeps 100% minus nav size*/
+      margin-left: 200px;
+    }
+
+    /*Show all nav*/
+    .sidebar{
+      margin-left: 0px;
+      float: left;
+    }
+    /*Show hidden items on nav*/
+    .navbar-nav .forAnimate{
+      opacity: 1;
+    }
+  }
+
+  .sidebar .navbar-nav .open .dropdown-menu>li>a:hover, .sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+    color: #CCC;
+    background-color: transparent;
+  }
+
+  
